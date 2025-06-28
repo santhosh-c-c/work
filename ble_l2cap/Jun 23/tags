@@ -1,0 +1,54 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+BLE_DEV_CONNECTED	WO THREAD/ble.h	/^        BLE_DEV_CONNECTED,$/;"	e	enum:ble_state
+BLE_DEV_DISCONNECTED	WO THREAD/ble.h	/^        BLE_DEV_DISCONNECTED,$/;"	e	enum:ble_state
+BLE_H	WO THREAD/ble.h	2;"	d
+BLE_H	ble.h	2;"	d
+MAX_CLIENTS	WO THREAD/ble.h	7;"	d
+MAX_CLIENTS	ble.h	12;"	d
+MTU	WO THREAD/ble.h	9;"	d
+MTU	ble.h	14;"	d
+PSM	WO THREAD/ble.h	8;"	d
+PSM	ble.h	13;"	d
+b_state	ble.h	/^	enum ble_state b_state;$/;"	m	struct:ble_device	typeref:enum:ble_device::ble_state
+ble_connect	WO THREAD/ble.c	/^static int ble_connect(const char *dest_addr)$/;"	f	file:
+ble_connect	ble.c	/^static int ble_connect(const char *dest_addr)$/;"	f	file:
+ble_dev_connected	ble.h	/^	ble_dev_connected,$/;"	e	enum:ble_state
+ble_dev_disconnected	ble.h	/^	ble_dev_disconnected,$/;"	e	enum:ble_state
+ble_device	WO THREAD/ble.h	/^typedef struct ble_device {$/;"	s
+ble_device	ble.h	/^typedef struct ble_device {$/;"	s
+ble_device_t	WO THREAD/ble.h	/^} ble_device_t;$/;"	t	typeref:struct:ble_device
+ble_device_t	ble.h	/^} ble_device_t;$/;"	t	typeref:struct:ble_device
+ble_disconnect	WO THREAD/ble.c	/^static void ble_disconnect(int socket)$/;"	f	file:
+ble_disconnect	ble.c	/^static void ble_disconnect(int socket)$/;"	f	file:
+ble_receive_data	WO THREAD/ble.c	/^static int ble_receive_data(int socket, char *buffer, size_t buffer_size)$/;"	f	file:
+ble_receive_data	ble.c	/^static int ble_receive_data(int socket, char *buffer, size_t buffer_size)$/;"	f	file:
+ble_send_data	WO THREAD/ble.c	/^static int ble_send_data(int socket, const char *message)$/;"	f	file:
+ble_send_data	ble.c	/^static int ble_send_data(int socket, const char *message)$/;"	f	file:
+ble_state	WO THREAD/ble.h	/^enum ble_state {$/;"	g
+ble_state	ble.h	/^enum ble_state {$/;"	g
+device_ble_connect	WO THREAD/ble.c	/^int device_ble_connect(ble_device_t *ble_node, char *dest_node)$/;"	f
+device_ble_connect	ble.c	/^int device_ble_connect(ble_device_t *ble_node, char *dest_node)$/;"	f
+device_disconnect	WO THREAD/ble.c	/^void device_disconnect(ble_device_t *ble_node)$/;"	f
+device_disconnect	ble.c	/^void device_disconnect(ble_device_t *ble_node)$/;"	f
+device_receiver	ble.c	/^void *device_receiver(void * ble_node_arg)$/;"	f
+device_recv_data	WO THREAD/ble.c	/^int device_recv_data(ble_device_t *ble_node, char *buffer, size_t buffer_size)$/;"	f
+device_recv_data	ble.c	/^static int device_recv_data(ble_device_t *ble_node, char *buffer, size_t buffer_size)$/;"	f	file:
+device_send_data	WO THREAD/ble.c	/^int device_send_data(ble_device_t *ble_node, char *dest_addr, char *message)$/;"	f
+device_send_data	ble.c	/^int device_send_data(ble_device_t *ble_node, char *dest_addr, char *message)$/;"	f
+mac_addr	WO THREAD/ble.h	/^	char mac_addr[18];$/;"	m	struct:ble_device
+mac_addr	ble.h	/^	char mac_addr[18];$/;"	m	struct:ble_device
+main	WO THREAD/main.c	/^int main(int argc, char **argv)$/;"	f
+main	main.c	/^int main(int argc, char **argv)$/;"	f
+node_socket	WO THREAD/ble.h	/^	int  node_socket;$/;"	m	struct:ble_device
+node_socket	ble.h	/^	int  node_socket;$/;"	m	struct:ble_device
+state	WO THREAD/ble.h	/^	enum ble_state state;$/;"	m	struct:ble_device	typeref:enum:ble_device::ble_state
+t_state	ble.h	/^    	enum thread_state t_state;$/;"	m	struct:ble_device	typeref:enum:ble_device::thread_state
+thread_id	ble.h	/^	pthread_t thread_id;$/;"	m	struct:ble_device
+thread_ready	ble.h	/^	thread_ready,$/;"	e	enum:thread_state
+thread_running	ble.h	/^	thread_running,$/;"	e	enum:thread_state
+thread_state	ble.h	/^enum thread_state {$/;"	g

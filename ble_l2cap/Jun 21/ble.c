@@ -1,0 +1,160 @@
+#include "ble.h"
+#include <sys/socket.h>
+
+#if 0
+static int ble_connect(const char *dest_addr)
+{
+	int s, level, error;
+	struct sockaddr_l2 addr = {0};
+
+	s = socket(AF_BLUETOOTH, SOCK_SEQPACKET, BTPROTO_L2CAP);
+	if (s < 0)
+		return -ENOSYS;
+
+	addr.l2_family = AF_BLUETOOTH;
+	addr.l2_psm = htobs(PSM);
+	addr.l2_bdaddr_type = BDADDR_LE_RANDOM;
+	str2ba(dest_addr, &addr.l2_bdaddr);
+
+	error = connect(s, (struct sockaddr *)&addr, sizeof(addr));
+	if (error < 0) {
+		close(s);
+		return -ECONNREFUSED;
+	}
+	return s;
+}
+#endif
+
+#if 0
+static int ble_send_data(int socket, const char *message)
+{
+	int sdu_len, status;
+	char buffer[MTU + 2] = {0};
+
+	sdu_len = htobs(strlen(message));
+	memcpy(buffer, &sdu_len, 2);
+	memcpy(buffer + 2, message, strlen(message));
+	
+	status = write(socket, buffer, 2 + strlen(message));
+	if (status < 0) {
+		perror("Failed to write");
+		return -ENOTCONN;
+	}
+	return status;
+}
+#endif
+
+#if 0
+static int ble_receive_data(int socket, char *buffer, size_t buffer_size)
+{
+	int status;
+	memset(buffer, 0, buffer_size);
+	
+	status = read(socket, buffer, buffer_size);
+	if (status > 0)
+		return status;
+
+	return -ENOTCONN;
+}
+#endif
+
+#if 0
+static int device_recv_data(ble_device_t *ble_node, char *buffer, size_t buffer_size)
+{
+	int error;
+	
+	error = ble_node->b_state;
+	if(error) {
+		error = ble_receive_data(ble_node->node_socket, buffer, buffer_size);
+		return error;
+	}
+	
+	return -ENOTCONN;
+}
+#endif
+
+static void ble_disconnect(int socket)
+{
+	close(socket);
+}
+
+#if 0
+int device_ble_connect(ble_device_t *ble_node, char *dest_node)
+{
+	int socket;
+	strncpy(ble_node->mac_addr, dest_node, 18);
+
+	socket = ble_connect(dest_node);
+	if(!(socket < 0))
+	{
+		ble_node->b_state     = ble_dev_connected;
+		ble_node->t_state     = thread_running;
+		ble_node->m_state     = thread_running;
+		ble_node->node_socket = socket;
+	}
+	return socket;
+}
+#endif
+
+#if 0
+int device_send_data(ble_device_t *ble_node, char *message)
+{
+	return ble_send_data(ble_node->node_socket, message);
+}
+#endif
+void device_disconnect(ble_device_t *ble_node)
+{
+	ble_node->b_state = ble_dev_disconnected;
+	ble_node->t_state = thread_ready;
+	ble_node->m_state = thread_ready;
+	ble_disconnect(ble_node->node_socket);
+}
+
+#if 0
+void *device_receiver(void * ble_node_arg)
+{
+	int error;
+	char buffer[MTU + 2] = {0};
+	
+	ble_device_t * ble_node = (ble_device_t *)ble_node_arg;
+	
+	while(ble_node->t_state && ble_node->b_state) {
+		error = device_recv_data(ble_node, buffer, sizeof(buffer));
+		if(error > 0)
+			printf("Resp from %.2s : %.2s\n", ble_node->mac_addr, buffer + 2);
+
+		usleep(1000);
+	}
+}
+#endif
+
+#if 0
+static int is_socket_connected(int socket)
+{
+	int error, ret;
+	socklen_t len = sizeof(error);
+
+	ret = getsockopt(socket, SOL_SOCKET, SO_ERROR, &error, &len);
+	if (ret != 0 || error != 0)
+		return 0;
+
+	return 1;
+}
+
+void *device_monitor(void *ble_node_arg)
+{
+	int error;
+	ble_device_t *ble_node = (ble_device_t *)ble_node_arg;
+	
+	while (ble_node->m_state && ble_node->b_state) {
+		error = is_socket_connected(ble_node->node_socket);
+		if (!error) {
+			printf("Connection lost %s\n", ble_node->mac_addr);
+			device_disconnect(ble_node);
+			break;
+		}
+		usleep(500000);
+	}
+	return NULL;
+}
+#endif
