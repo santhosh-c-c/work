@@ -1,0 +1,65 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<stddef.h>
+static char * strtoken(char * s_str, const char * del)
+{
+	static char * save;
+	if(s_str==NULL)
+	{
+		s_str=save;
+	}
+	for(char i=0;*(s_str+i)!=0;i++)
+	{
+		if(*(s_str+i)==*del || *(s_str+i)==*(del+1) || *(s_str+i)==*(del+2))
+		{
+			*(s_str+i)='\0';
+			save=(s_str+i+1);
+			return s_str;
+		}
+	}
+	return NULL;
+}
+int main()
+{
+	char *str=malloc(100);
+	if(str==NULL)
+	{
+		printf("Memory not Allocated\n");
+		return 0;
+	}	
+	char *del=malloc(100);
+	if(del==NULL)
+	{
+		free(str);
+		printf("Memory not Allocated\n");
+		return 0;
+	}
+	printf("1 - Enter A String : ");
+	scanf("%[^\n]s",str);
+	getchar();
+	printf("1 - Enter A Delim : ");
+	scanf("%[^\n]s",del);
+	getchar();
+	char * result=strtoken(str,del);	
+	if(result==NULL)
+	{
+		printf("Delimiter NOT Found\n");
+		return 0;
+	}	
+	printf("\t1 - STRING OUTPUT : %s\n",result);
+	printf("Enter A Delim : ");
+	scanf("%[^\n]s",del);
+	getchar();
+	result=strtoken(NULL,del);	
+	if(result==NULL)
+	{
+		printf("2 - Delimiter NOT Found\n");
+		return 0;
+	}	
+	printf("\t2 - STRING OUTPUT : %s\n",result);
+	free(str);
+	free(del);
+	str=NULL;
+	del=NULL;
+	return 0;
+}
