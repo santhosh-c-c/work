@@ -1,2 +1,2 @@
 # Git_init
-Sample repo
+Sample repo to test all git concepts & commands
